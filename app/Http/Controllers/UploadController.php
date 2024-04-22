@@ -12,7 +12,7 @@ class UploadController extends Controller
         ]);
 
         $image_name = time() . "." . $request->image->extension();
-        $request->image->move(public_path("image"), $image_name);
+        $request->image->move(public_path("images"), $image_name);
 
         return response()->json([
             "image" => $image_name,

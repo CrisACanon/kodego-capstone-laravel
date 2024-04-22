@@ -21,6 +21,7 @@ class AuthController extends Controller
             "id_proof" => "nullable",
             "email" => "required|email|unique:users,email",
             "password" => "required|confirmed"
+
         ]);
 
         $user = User::create([

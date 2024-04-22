@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('marital_status');
             $table->string("id_proof")->nullable();
+            $table->enum("user_role", ["Customer", "Employee", "Administrator"])->default("Customer");
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

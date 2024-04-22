@@ -27,6 +27,7 @@ class User extends Authenticatable
         "gender",
         "marital_status",
         "id_proof",
+        "user_role",
         "email",
         "password"
 
