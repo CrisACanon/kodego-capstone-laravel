@@ -23,7 +23,10 @@ return new class extends Migration
             $table->unsignedBigInteger("term_id");
             $table->foreign("term_id")->references("id")->on("terms");
             $table->enum("status", ["Not Started", "Ongoing", "Completed"])->default("Not Started");
+            $table->date("start_date");
+            $table->string("start_time");
             $table->string("remarks")->nullable();
+            $table->string("message")->nullable();
             $table->timestamps();
 
         });

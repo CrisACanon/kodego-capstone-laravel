@@ -23,6 +23,7 @@ class ServiceController extends Controller
             "title" => "required",
             "description" => "required",
             "rate" => "required",
+            "service_category" => "required",
             "image" => "nullable"
         ]);
 
@@ -30,6 +31,7 @@ class ServiceController extends Controller
             "title" => $fields["title"],
             "description" => $fields["description"],
             "rate" => $fields["rate"],
+            "service_category" => $fields["service_category"],
             "image" => $fields["image"],
             "user_id" => auth()->user()->id
         ]);
@@ -53,12 +55,14 @@ class ServiceController extends Controller
             "title" => "required",
             "description" => "required",
             "rate" => "required",
+            "service_category" => "required",
             "image" => "nullable"
         ]);
 
         $service->title = $fields["title"];
         $service->description = $fields["description"];
         $service->rate = $fields["rate"];
+        $service->service_category = $fields["service_category"];
         $service->image = $fields["image"];
         $service->save();
 

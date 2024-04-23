@@ -22,7 +22,10 @@ class BookingController extends Controller
         $fields = $request->validate([
             "service_id" => "required",
             "term_id" => "required",
+            "start_date" => "required",
+            "start_time" => "required",
             "remarks" => "nullable",
+            "message" => "nullable",
             "emp_id" => "nullable",
             
  
@@ -32,7 +35,10 @@ class BookingController extends Controller
             "emp_id" => $fields["emp_id"],
             "service_id" => $fields["service_id"],
             "term_id" => $fields["term_id"],
+            "start_date" => $fields["start_date"],
+            "start_time" => $fields["start_time"],
             "remarks" => $fields["remarks"],
+            "message" => $fields["message"],
             "cust_id" => auth()->user()->id
         ]);
 
@@ -56,6 +62,9 @@ class BookingController extends Controller
             "service_id" => "required",
             "term_id" => "required",
             "status" => "required",
+            "start_date" => "required",
+            "start_time" => "required",
+            "message" => "nullable",
             "remarks" => "nullable",
         ]);
 
@@ -63,6 +72,9 @@ class BookingController extends Controller
         $booking->service_id = $fields["service_id"];
         $booking->term_id = $fields["term_id"];
         $booking->status = $fields["status"];
+        $booking->start_date = $fields["start_date"];
+        $booking->start_time = $fields["start_time"];
+        $booking->message = $fields["message"];
         $booking->remarks = $fields["remarks"];
         $booking->save();
 

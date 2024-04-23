@@ -11,10 +11,11 @@ class AuthController extends Controller
     function register(Request $request) {
         $fields = $request->validate([
             "first_name" => "required",
-            "middle_name" => "required",
             "last_name" => "required",
             "date_of_birth" => "required",
-            "address" => "required",
+            "detailed_address" => "required",
+            "province" => "required",
+            "city_municipality" => "required",
             "contact_number" => "required",
             "gender" => "required",
             "marital_status" => "required",
@@ -26,10 +27,11 @@ class AuthController extends Controller
 
         $user = User::create([
             "first_name" => $fields["first_name"],
-            "middle_name" => $fields["middle_name"],
             "last_name" => $fields["last_name"],
             "date_of_birth" => $fields["date_of_birth"],
-            "address" => $fields["address"],
+            "detailed_address" => $fields["detailed_address"],
+            "province" => $fields["province"],
+            "city_municipality" => $fields["city_municipality"],
             "contact_number" => $fields["contact_number"],
             "gender" => $fields["gender"],
             "marital_status" => $fields["marital_status"],

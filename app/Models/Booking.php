@@ -14,6 +14,9 @@ class Booking extends Model
         "service_id",
         "term_id",
         "status",
+        "start_date",
+        "start_time",
+        "message",
         "remarks",
         "emp_id",
     ];

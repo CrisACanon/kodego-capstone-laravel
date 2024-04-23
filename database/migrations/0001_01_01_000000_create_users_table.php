@@ -15,14 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('middle_name');
             $table->date('date_of_birth');
-            $table->text("address");
+            $table->text("detailed_address");
+            $table->text("province");
+            $table->text("city_municipality");
             $table->text("contact_number");
             $table->string('gender');
             $table->string('marital_status');
             $table->string("id_proof")->nullable();
-            $table->enum("user_role", ["Customer", "Employee", "Administrator"])->default("Customer");
+            $table->enum("user_role", ["Customer", "Service Provider", "Administrator"])->default("Customer");
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
