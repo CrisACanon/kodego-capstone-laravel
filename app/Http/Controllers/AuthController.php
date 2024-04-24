@@ -49,7 +49,7 @@ class AuthController extends Controller
         ], 201, [], JSON_PRETTY_PRINT);
     }
 
-    function login(Request $request) {
+    public function login(Request $request) {
         $fields = $request->validate([
             "email" => "required|email",
             "password" => "required"
@@ -59,20 +59,20 @@ class AuthController extends Controller
 
         if (!$user) {
             return response()->json([
-                "message" => "Email does not exist"
+                "message" => "Email address does not exist"
             ], 404, [], JSON_PRETTY_PRINT);
         }
 
-        $token = $user->createToken("secret")->plainTextToken;
+        $token = $user->createToken(env("AUTH_SECRET", "secret"))->plainTextToken;
 
         return response()->json([
             "message" => "Logged in successfully",
             "user" => $user,
             "token" => $token
-        ], 200, [], JSON_PRETTY_PRINT);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 
-    function logout() {
+    public function logout() {
         auth()->user()->tokens()->delete();
 
         return response()->json([

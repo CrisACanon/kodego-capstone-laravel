@@ -17,10 +17,9 @@ Route::post("/login", [AuthController::class, "login"]);
 //User
 Route::get("/users", [UserController::class, "getUsers"]);
 Route::get("/users/{id}", [UserController::class, "getUser"]);
+Route::get("/users/{user_role}", [UserController::class, "getUserRole"]);
 
 
-// Test Protected Routes 
-Route::group(["middleware" => ["auth:sanctum"]], function() {
 
   //Task
   Route::get("/tasks", [TaskController::class, "getTasks"]);
@@ -50,8 +49,17 @@ Route::post("/bookings", [BookingController::class, "setBooking"]);
 Route::put("/bookings/{id}", [BookingController::class, "updateBooking"]);
 Route::delete("/bookings/{id}", [BookingController::class, "deleteBooking"]);
 
-  // Upload
-  Route::post("/upload-image", [UploadController::class, "uploadImage"]);
+//update User
+Route::put("/users", [UserController::class, "updateUser"]);
 
-  Route::post("/logout", [AuthController::class, "logout"]);
-});
+// Upload
+Route::post("/upload-image", [UploadController::class, "uploadImage"]);
+
+Route::post("/logout", [AuthController::class, "logout"]);
+
+
+
+// Test Protected Routes 
+// Route::group(["middleware" => ["auth:sanctum"]], function() {
+
+// });

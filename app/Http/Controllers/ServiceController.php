@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
-//use App\Http\Resources\TaskResource;
+use App\Http\Resources\ServiceResource;
 
 class ServiceController extends Controller
 {
-    function getServices(Request $request) {
-        $services= Service::all();
-            return response()->json($services, 200, [], JSON_PRETTY_PRINT);
-        }
+    public function getServices() {
+        $services = ServiceResource::collection(Service::all());
+        return response()->json($services, 200, [], JSON_PRETTY_PRINT);
+    }
 
-    function getService($id) {
-        $service = Service::where("id", $id)->first();
+    public function getService($id) {
+        $service = new ServiceResource(Service::find($id));
         return response()->json($service, 200, [], JSON_PRETTY_PRINT);
     }
 

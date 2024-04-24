@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
-//use App\Http\Resources\TaskResource;
+use App\Http\Resources\BookingResource;
 
 class BookingController extends Controller
 {
-    function getBookings(Request $request) {
-        $bookings = Booking::where("cust_id", auth()->user()->id)->paginate(5);
+    public function getBookings() {
+        $bookings = BookingResource::collection(Booking::all());
         return response()->json($bookings, 200, [], JSON_PRETTY_PRINT);
     }
 
-    function getBooking($id) {
-        $booking = Booking::where("id", $id)->first();
+    public function getBooking($id) {
+        $booking = new BookingResource(Booking::find($id));
         return response()->json($booking, 200, [], JSON_PRETTY_PRINT);
     }
 
