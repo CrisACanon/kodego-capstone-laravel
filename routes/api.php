@@ -19,14 +19,12 @@ Route::get("/users", [UserController::class, "getUsers"]);
 Route::get("/users/{id}", [UserController::class, "getUser"]);
 Route::get("/users/{user_role}", [UserController::class, "getUserRole"]);
 
-
-
-  //Task
-  Route::get("/tasks", [TaskController::class, "getTasks"]);
-  Route::get("/tasks/{id}", [TaskController::class, "getTask"]);
-  Route::post("/tasks", [TaskController::class, "setTask"]);
-  Route::put("/tasks/{id}", [TaskController::class, "updateTask"]);
-  Route::delete("/tasks/{id}", [TaskController::class, "deleteTask"]);
+ //Task
+ Route::get("/tasks", [TaskController::class, "getTasks"]);
+ Route::get("/tasks/{id}", [TaskController::class, "getTask"]);
+ Route::post("/tasks", [TaskController::class, "setTask"]);
+ Route::put("/tasks/{id}", [TaskController::class, "updateTask"]);
+ Route::delete("/tasks/{id}", [TaskController::class, "deleteTask"]);
 
 //Term
 Route::get("/terms", [TermController::class, "getTerms"]);
@@ -58,8 +56,8 @@ Route::post("/upload-image", [UploadController::class, "uploadImage"]);
 Route::post("/logout", [AuthController::class, "logout"]);
 
 
-
 // Test Protected Routes 
-// Route::group(["middleware" => ["auth:sanctum"]], function() {
+Route::group(["middleware" => ["auth:sanctum"]], function() {
 
-// });
+ 
+});

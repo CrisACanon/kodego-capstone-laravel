@@ -62,7 +62,7 @@ class UserController extends Controller
         $user->save();
 
         return response()->json([
-            "message" => "Profile has been updated",
+            "message" => "User has been updated",
             "data" => $user
         ], 200, [], JSON_PRETTY_PRINT);
     }
