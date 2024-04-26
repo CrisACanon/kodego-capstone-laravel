@@ -9,7 +9,7 @@ use App\Http\Resources\ServiceResource;
 class ServiceController extends Controller
 {
     public function getServices() {
-        $services = Service::all();
+        $services = ServiceResource::collection(Service::all());
         return response()->json($services, 200, [], JSON_PRETTY_PRINT);
     }
 

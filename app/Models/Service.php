@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\Relations\BelongsTo;
-//use App\Models\User;
+//use App\Models\Booking;
 
 class Service extends Model
 
@@ -19,7 +19,7 @@ class Service extends Model
         "image",
     ];
 
-    //public function user(): BelongsTo {
-    //    return $this->belongsTo(User::class);
+    //public function booking(): BelongsTo {
+    //    return $this->belongsTo(Booking::class);
    // }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -19,11 +20,12 @@ class UserController extends Controller
         return response()->json($user, 200, [], JSON_PRETTY_PRINT);
     }
 
-    public function getUserBlogs($user_role) {
-        $users = User::where("user_role", $user_role)->get();
+    public function getUserRole($role) {
+      
+        $users = User::where("user_role", $role )->get();
         return response()->json($users, 200, [], JSON_PRETTY_PRINT);
-    }
 
+    }
 
     public function updateUser(Request $request) {
         $user = User::find(auth()->user()->id);
@@ -67,4 +69,17 @@ class UserController extends Controller
         ], 200, [], JSON_PRETTY_PRINT);
     }
     
+    function deleteUser($id) {
+        $user = User::where("id", $id)->first();
+        if (!$user) {
+            return response()->json([
+                "message" => "User profile does not exist"
+            ], 404, [], JSON_PRETTY_PRINT);
+        }
+
+        $user->delete();
+        return response()->json([
+            "message" => "User profile has been deleted"
+        ], 200, [], JSON_PRETTY_PRINT);
+    }
 }

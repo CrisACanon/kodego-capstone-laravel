@@ -10,6 +10,7 @@ use App\Http\Controllers\TermController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BookingController;
 
+
 // Authentication
 Route::post("/register", [AuthController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
@@ -17,18 +18,16 @@ Route::post("/login", [AuthController::class, "login"]);
 //User
 Route::get("/users", [UserController::class, "getUsers"]);
 Route::get("/users/{id}", [UserController::class, "getUser"]);
-Route::get("/users/{user_role}", [UserController::class, "getUserRole"]);
 
- //Task
- Route::get("/tasks", [TaskController::class, "getTasks"]);
- Route::get("/tasks/{id}", [TaskController::class, "getTask"]);
- Route::post("/tasks", [TaskController::class, "setTask"]);
- Route::put("/tasks/{id}", [TaskController::class, "updateTask"]);
- Route::delete("/tasks/{id}", [TaskController::class, "deleteTask"]);
+// Test Protected Routes 
+
+Route::group(["middleware" => ["auth:sanctum"]], function() {
+
 
 //Term
 Route::get("/terms", [TermController::class, "getTerms"]);
 Route::get("/terms/{id}", [TermController::class, "getTerm"]);
+Route::get("/terms/{title}", [TermController::class, "getTermTitle"]);
 Route::post("/terms", [TermController::class, "setTerm"]);
 Route::put("/terms/{id}", [TermController::class, "updateTerm"]);
 Route::delete("/terms/{id}", [TermController::class, "deleteTerm"]);
@@ -48,7 +47,11 @@ Route::put("/bookings/{id}", [BookingController::class, "updateBooking"]);
 Route::delete("/bookings/{id}", [BookingController::class, "deleteBooking"]);
 
 //update User
-Route::put("/users", [UserController::class, "updateUser"]);
+
+//Route::get("/users/{user_role}", [UserController::class, "getUserRole"]);
+Route::put("/users/{id}", [UserController::class, "updateUser"]);
+Route::delete("/users/{id}", [UserController::class, "deleteUser"]);
+
 
 // Upload
 Route::post("/upload-image", [UploadController::class, "uploadImage"]);
@@ -56,8 +59,4 @@ Route::post("/upload-image", [UploadController::class, "uploadImage"]);
 Route::post("/logout", [AuthController::class, "logout"]);
 
 
-// Test Protected Routes 
-Route::group(["middleware" => ["auth:sanctum"]], function() {
-
- 
 });

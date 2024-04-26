@@ -19,6 +19,11 @@ class TermController extends Controller
         return response()->json($term, 200, [], JSON_PRETTY_PRINT);
     }
 
+    public function getTermTitle($title) {
+        $terms = Term::where("title", $title)->get();
+        return response()->json($terms, 200, [], JSON_PRETTY_PRINT);
+    }
+
     function setTerm(Request $request) {
         $fields = $request->validate([
             "title" => "required",
